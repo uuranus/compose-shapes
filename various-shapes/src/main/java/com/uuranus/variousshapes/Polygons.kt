@@ -14,10 +14,10 @@ import kotlin.math.sin
 @Composable
 fun PolygonShape(
     numOfPoints: Int,
+    modifier: Modifier,
 ) {
     Canvas(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = modifier
     ) {
 
         val path = Path()

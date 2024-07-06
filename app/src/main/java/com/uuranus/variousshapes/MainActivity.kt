@@ -3,8 +3,11 @@ package com.uuranus.variousshapes
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
@@ -29,22 +32,40 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    var innerRadiusRatio by remember { mutableFloatStateOf(0.5f) }
+                    var innerRadiusRatio by remember { mutableFloatStateOf(3f) }
 
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(24.dp)
+                            .padding(24.dp),
+                        verticalArrangement = Arrangement.Center
                     ) {
 
-                        StarShape(innerRadiusRatio, modifier = Modifier.weight(1f))
+                        Box(
+                            modifier = Modifier.weight(0.3f)
+                        )
+
+                        PolygonShape(
+                            numOfPoints = innerRadiusRatio.toInt(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .weight(0.4f)
+
+                        )
+
+
                         Slider(
                             modifier = Modifier.padding(vertical = 36.dp),
                             value = innerRadiusRatio,
                             onValueChange = {
                                 innerRadiusRatio = it
-                            }, valueRange = 0.1f..1f
+                            }, valueRange = 3f..20f
                         )
+
+                        Box(
+                            modifier = Modifier.weight(0.3f)
+                        )
+
                     }
 
 
@@ -63,7 +84,7 @@ fun GreetingPreview() {
         Column {
 
 
-            PolygonShape(4)
+            PolygonShape(4, modifier = Modifier)
 
             Slider(value = innerRadiusRatio, onValueChange = {
                 innerRadiusRatio = it

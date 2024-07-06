@@ -10,10 +10,11 @@ import androidx.compose.ui.graphics.Path
 @Composable
 fun ParallelogramShape(
     skewed: Float,
+    modifier: Modifier,
 ) {
 
     Canvas(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier
     ) {
 
         val path = Path()
@@ -42,11 +43,11 @@ fun ParallelogramShape(
 
 @Composable
 fun RhombusShape(
-
+    modifier: Modifier,
 ) {
 
     Canvas(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier
     ) {
 
         val path = Path()
@@ -79,10 +80,11 @@ fun RhombusShape(
 @Composable
 fun TrapezoidShape(
     skewed: Float,
+    modifier: Modifier,
 ) {
 
     Canvas(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier
     ) {
 
         val path = Path()
