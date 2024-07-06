@@ -6,17 +6,16 @@
         <State>
           <targetSelectedWithDropDown>
             <Target>
-              <type value="BOOT_WITH_SNAPSHOT_TARGET" />
+              <type value="COLD_BOOT_TARGET" />
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
                   <value value="$USER_HOME$/.android/avd/Pixel_8_Pro_API_33.avd" />
                 </Key>
               </deviceKey>
-              <snapshotKey value="$USER_HOME$/.android/avd/Pixel_8_Pro_API_33.avd/snapshots/snap_2024-07-04_16-04-41" />
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-04T07:57:31.662458Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-07-05T02:17:07.764203Z" />
         </State>
       </entry>
     </value>

@@ -43,7 +43,8 @@ class MainActivity : ComponentActivity() {
                             value = innerRadiusRatio,
                             onValueChange = {
                                 innerRadiusRatio = it
-                            }, valueRange = 0.1f..1f)
+                            }, valueRange = 0.1f..1f
+                        )
                     }
 
 
@@ -61,7 +62,9 @@ fun GreetingPreview() {
 
         Column {
 
-            StarShape(innerRadiusRatio, modifier = Modifier.weight(1f))
+
+            PolygonShape(4)
+
             Slider(value = innerRadiusRatio, onValueChange = {
                 innerRadiusRatio = it
             })
