@@ -84,7 +84,7 @@ fun GreetingPreview() {
         Column {
 
 
-            PolygonShape(4, modifier = Modifier)
+            TrapezoidShape(letSkewed = 0.6f, modifier = Modifier.fillMaxSize())
 
             Slider(value = innerRadiusRatio, onValueChange = {
                 innerRadiusRatio = it
