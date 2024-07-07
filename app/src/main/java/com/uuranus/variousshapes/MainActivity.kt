@@ -32,7 +32,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    var innerRadiusRatio by remember { mutableFloatStateOf(3f) }
+                    var innerRadiusRatio by remember { mutableFloatStateOf(0.5f) }
+                    var numOfPoints by remember { mutableFloatStateOf(3f) }
 
                     Column(
                         modifier = Modifier
@@ -45,8 +46,9 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.weight(0.3f)
                         )
 
-                        PolygonShape(
-                            numOfPoints = innerRadiusRatio.toInt(),
+                        StarShape(
+                            innerRadiusRatio = innerRadiusRatio,
+                            numOfPoints = numOfPoints.toInt(),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .weight(0.4f)
@@ -59,6 +61,14 @@ class MainActivity : ComponentActivity() {
                             value = innerRadiusRatio,
                             onValueChange = {
                                 innerRadiusRatio = it
+                            }
+                        )
+
+                        Slider(
+                            modifier = Modifier.padding(vertical = 36.dp),
+                            value = numOfPoints,
+                            onValueChange = {
+                                numOfPoints = it
                             }, valueRange = 3f..20f
                         )
 

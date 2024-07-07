@@ -12,10 +12,9 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 @Composable
-fun StarShape(innerRadiusRatio: Float, modifier: Modifier) {
+fun StarShape(innerRadiusRatio: Float, numOfPoints:Int, modifier: Modifier) {
     Canvas(
         modifier = modifier
-            .fillMaxWidth()
     ) {
 
         val path = Path()
@@ -23,15 +22,14 @@ fun StarShape(innerRadiusRatio: Float, modifier: Modifier) {
         val centerY = size.height / 2
         val outerRadius = minOf(centerX, centerY)
         val innerRadius = outerRadius * innerRadiusRatio
-        val numPoints = 5
-        val angle = 2.0 * PI / (numPoints * 2)
+        val angle = 2.0 * PI / (numOfPoints * 2)
 
         path.moveTo(
             centerX + (outerRadius * sin(0.0)).toFloat(),
             centerY - (outerRadius * cos(0.0)).toFloat()
         )
 
-        for (i in 1 until numPoints * 2) {
+        for (i in 1 until numOfPoints * 2) {
             val r = if (i % 2 == 0) outerRadius else innerRadius
             val x = centerX + (r * sin(i * angle)).toFloat()
             val y = centerY - (r * cos(i * angle)).toFloat()
