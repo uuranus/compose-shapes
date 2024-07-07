@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("maven-publish")
 }
 
 android {
@@ -55,4 +56,31 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            create<MavenPublication>("release") {
+                // Applies the component for the release build variant.
+                from(components["release"])
+
+                // You can then customize attributes of the publication as shown below.
+                groupId = "com.github.uuranus"
+                artifactId = "various-shapes"
+                version = "1.0.0" // 예: 1.0.0
+            }
+            // Creates a Maven publication called “debug”.
+            create<MavenPublication>("debug") {
+                // Applies the component for the debug build variant.
+                from(components["debug"])
+
+                groupId = "com.github.uuranus"
+                artifactId = "various-shapes"
+                version = "1.0.0"
+            }
+        }
+    }
 }

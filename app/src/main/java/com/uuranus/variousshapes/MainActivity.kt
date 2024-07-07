@@ -23,17 +23,20 @@ import androidx.compose.ui.unit.dp
 import com.uuranus.variousshapes.ui.theme.VariousShapesTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             VariousShapesTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     var innerRadiusRatio by remember { mutableFloatStateOf(0.5f) }
-                    var numOfPoints by remember { mutableFloatStateOf(3f) }
+                    var numOfPoints by remember { mutableFloatStateOf(5f) }
+
 
                     Column(
                         modifier = Modifier
@@ -78,7 +81,6 @@ class MainActivity : ComponentActivity() {
 
                     }
 
-
                 }
             }
         }
@@ -93,8 +95,6 @@ fun GreetingPreview() {
 
         Column {
 
-
-            TrapezoidShape(letSkewed = 0.6f, modifier = Modifier.fillMaxSize())
 
             Slider(value = innerRadiusRatio, onValueChange = {
                 innerRadiusRatio = it

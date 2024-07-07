@@ -79,7 +79,7 @@ fun RhombusShape(
 
 @Composable
 fun TrapezoidShape(
-    letSkewed: Float = 0.2f,
+    leftSkewed: Float = 0.2f,
     rightSkewed: Float = 0.2f,
     modifier: Modifier,
 ) {
@@ -93,7 +93,7 @@ fun TrapezoidShape(
         val width = size.width
         val height = size.height
 
-        val leftSkewedWidth = width * letSkewed
+        val leftSkewedWidth = width * leftSkewed
         val rightSkewedWidth = width * rightSkewed
 
         path.apply {
