@@ -4,20 +4,111 @@ Various shapes drawn with Jetpack Compose
 
 # Rectangles
 
-| name | screenshots | code|
-| :--:|:--:|:--:|
-|Parallelogram | <img src = "https://github.com/uuranus/compose-shapes/assets/72340294/a8a30f67-46e9-4c8d-a641-3cd243363d61" width = "300"> | ``` ```|
-|Rhombus | <img src = "https://github.com/uuranus/compose-shapes/assets/72340294/9d00e04e-ab4e-4e37-aba8-3fc77fe36471" width = "300"> | ``` ```|
-|Trapezoid | <img src = "https://github.com/uuranus/compose-shapes/assets/72340294/7208acb5-ee6e-482a-80bd-34584130ae4f" width = "300"> | ``` ```|
+<table>
+  <th>Name</th>
+  <th>Screenshot</th>
+  <th>Code</th>
+
+  <tr>
+    <td>Parallelogram</td>
+    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/a8a30f67-46e9-4c8d-a641-3cd243363d61" width = "300"></td>
+<td>
+      
+```kotlin
+
+ParallelogramShape(
+  skewed = 0.2f,
+  modifier = Modifier.fillMaxSize()
+)
+
+```
+</td>
+  </tr>
+
+<tr>
+    <td>Rhombus</td>
+    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/9d00e04e-ab4e-4e37-aba8-3fc77fe36471" width = "300"></td>
+<td>
+      
+```kotlin
+
+RhombusShape(
+  modifier = Modifier.fillMaxSize()
+)
+
+```
+
+</td>
+  </tr>
+
+  <tr>
+    <td>Trapezoid</td>
+    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/c8ca4b1d-3a8b-45f6-9877-710398a95929" width = "300"></td>
+<td>
+      
+```kotlin
+
+TrapezoidShape(
+  leftSkewed = 0.2f,
+  rightSkewed = 0.2f,
+  modifier = Modifier.fillMaxSize()
+)
+
+```
+
+</td>
+  </tr>
+</table>
 
 
 # Polygons
-| name | screenshots | code|
-| :--:|:--:|:--:|
-| Regular Polygons | <img src = "https://github.com/uuranus/compose-shapes/assets/72340294/99d054ab-d0f9-4040-8847-0e2fbf0b06ae" width = "300"> | ``` ```|
+
+<table>
+  <th>Name</th>
+  <th>Screenshot</th>
+  <th>Code</th>
+
+  <tr>
+    <td>Regular Polygons</td>
+    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/99d054ab-d0f9-4040-8847-0e2fbf0b06ae" width = "300"></td>
+<td>
+      
+```kotlin
+
+PolygonShape(
+  numOfPoints = 5,
+  modifier = Modifier.fillMaxWidth(),
+)
+
+```
+</td>
+
+</tr>
+</table>
 
 # Stars
-| name | screenshots | code|
-| :--:|:--:|:--:|
-| Star | <img src = "https://github.com/uuranus/compose-shapes/assets/72340294/e900b2c7-9171-4386-934b-673d33e8d6c4" width = "300"> | ``` ```|
 
+<table>
+  <th>Name</th>
+  <th>Screenshot</th>
+  <th>Code</th>
+
+  <tr>
+    <td>Star</td>
+    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/b2efa930-6365-4bd3-8220-e4941fe08eb8" width = "300"></td>
+<td>
+      
+```kotlin
+
+StarShape(
+  innerRadiusRatio = 0.5f,
+  numOfPoints = 5,
+  modifier = Modifier
+    .fillMaxWidth()
+)
+
+```
+</td>
+
+</tr>
+</table>
