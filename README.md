@@ -1,10 +1,11 @@
 # Compose Shapes
 Various shapes drawn with Jetpack Compose
 
-
+![compose shapes thumbnail](https://github.com/uuranus/compose-shapes/assets/72340294/56357d3c-ad0a-4f15-94b0-f6ca07cc0082)
 # Rectangles
 
 <table>
+
   <th>Name</th>
   <th>Screenshot</th>
   <th>Code</th>
