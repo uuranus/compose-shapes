@@ -9,6 +9,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import kotlin.math.PI
 import kotlin.math.atan
 import kotlin.math.cos
@@ -19,7 +20,10 @@ import kotlin.math.tan
 fun RoundedParallelogramShape(
     modifier: Modifier = Modifier,
     skewed: Float = 0.2f,
-    cornerRadius: Dp,
+    topStart: Dp = 16.dp,
+    topEnd: Dp = 32.dp,
+    bottomEnd: Dp = 16.dp,
+    bottomStart: Dp = 32.dp,
 ) {
 
     Canvas(
@@ -46,59 +50,52 @@ fun RoundedParallelogramShape(
         )
 
         path.apply {
-            moveTo(skewedWidth + cornerRadius.toPx() * halfTan, 0f)
+            moveTo(skewedWidth + topStart.toPx() * halfTan, 0f)
 
-            lineTo(width - (cornerRadius.toPx() / halfTan), 0f)
+            lineTo(width - (topEnd.toPx() / halfTan), 0f)
 
             arcTo(
                 rect = Rect(
                     offset = Offset(
-                        width - cornerRadius.toPx() / halfTan - cornerRadius.toPx(),
+                        width - topEnd.toPx() / halfTan - topEnd.toPx(),
                         0f
                     ),
-                    size = Size(cornerRadius.toPx() * 2, cornerRadius.toPx() * 2)
+                    size = Size(topEnd.toPx() * 2, topEnd.toPx() * 2)
                 ),
                 startAngleDegrees = 270f,
                 sweepAngleDegrees = 180f - topRightAngleDegree.toFloat(),
                 forceMoveTo = false
             )
 
-//            quadraticBezierTo(
-//                x1 = x1,
-//                y1 = 0f,
-//                x2 =
-//            )
-
             lineTo(
-                width - skewedWidth + cornerRadius.toPx() * halfTan * cos(
+                width - skewedWidth + bottomEnd.toPx() * halfTan * cos(
                     topRightAngle
                 ),
-                height - cornerRadius.toPx() * halfTan * sin(topRightAngle)
+                height - bottomEnd.toPx() * halfTan * sin(topRightAngle)
             )
 
             arcTo(
                 rect = Rect(
                     offset = Offset(
-                        width - skewedWidth - cornerRadius.toPx() * halfTan - cornerRadius.toPx(),
-                        height - cornerRadius.toPx() * 2
+                        width - skewedWidth - bottomEnd.toPx() * halfTan - bottomEnd.toPx(),
+                        height - bottomEnd.toPx() * 2
                     ),
-                    size = Size(cornerRadius.toPx() * 2, cornerRadius.toPx() * 2)
+                    size = Size(bottomEnd.toPx() * 2, bottomEnd.toPx() * 2)
                 ),
                 startAngleDegrees = (90f - topRightAngleDegree).toFloat(),
                 sweepAngleDegrees = topRightAngleDegree.toFloat(),
                 forceMoveTo = false
             )
 
-            lineTo(cornerRadius.toPx() / halfTan, height)
+            lineTo(bottomStart.toPx() / halfTan, height)
 
-            //arc
             arcTo(
                 rect = Rect(
                     offset = Offset(
-                        cornerRadius.toPx() * halfTan - cornerRadius.toPx(),
-                        height - cornerRadius.toPx() * 2
+                        bottomStart.toPx() / halfTan - bottomStart.toPx(),
+                        height - bottomStart.toPx() * 2
                     ),
-                    size = Size(cornerRadius.toPx() * 2, cornerRadius.toPx() * 2)
+                    size = Size(bottomStart.toPx() * 2, bottomStart.toPx() * 2)
                 ),
                 startAngleDegrees = 90f,
                 sweepAngleDegrees = 180f - topRightAngleDegree.toFloat(),
@@ -106,19 +103,17 @@ fun RoundedParallelogramShape(
             )
 
             lineTo(
-                skewedWidth - cornerRadius.toPx() * halfTan * cos(topRightAngle),
-                cornerRadius.toPx() * halfTan * sin(topRightAngle)
+                skewedWidth - topStart.toPx() * halfTan * cos(topRightAngle),
+                topStart.toPx() * halfTan * sin(topRightAngle)
             )
-
-            //arc
 
             arcTo(
                 rect = Rect(
                     offset = Offset(
-                        skewedWidth + cornerRadius.toPx() * halfTan - cornerRadius.toPx(),
+                        skewedWidth + topStart.toPx() * halfTan - topStart.toPx(),
                         0f
                     ),
-                    size = Size(cornerRadius.toPx() * 2, cornerRadius.toPx() * 2)
+                    size = Size(topStart.toPx() * 2, topStart.toPx() * 2)
                 ),
                 startAngleDegrees = (270f - topRightAngleDegree).toFloat(),
                 sweepAngleDegrees = topRightAngleDegree.toFloat(),

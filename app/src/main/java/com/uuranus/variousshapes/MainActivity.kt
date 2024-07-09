@@ -18,9 +18,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.uuranus.variousshapes.ui.theme.VariousShapesTheme
@@ -41,6 +43,11 @@ class MainActivity : ComponentActivity() {
                     var numOfPoints by remember { mutableFloatStateOf(5f) }
                     var skewed by remember { mutableFloatStateOf(0.2f) }
 
+                    var topStart by remember { mutableStateOf(0) }
+                    var topEnd by remember { mutableStateOf(0) }
+                    var bottomStart by remember { mutableStateOf(0) }
+                    var bottomEnd by remember { mutableStateOf(0) }
+
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
@@ -57,9 +64,11 @@ class MainActivity : ComponentActivity() {
                                 .fillMaxWidth()
                                 .weight(0.4f),
                             skewed = skewed,
-                            cornerRadius = 32.dp
+                            topStart = topStart.dp,
+                            topEnd = topEnd.dp,
+                            bottomStart = bottomStart.dp,
+                            bottomEnd = bottomEnd.dp,
                         )
-
 
                         Slider(
                             modifier = Modifier.padding(vertical = 36.dp),
@@ -68,6 +77,35 @@ class MainActivity : ComponentActivity() {
                                 skewed = it
                             }
                         )
+                        Slider(
+                            modifier = Modifier.padding(vertical = 36.dp),
+                            value = topStart.toFloat(),
+                            onValueChange = {
+                                topStart = it.toInt()
+                            }, valueRange = 0f .. 100f
+                        )
+                        Slider(
+                            modifier = Modifier.padding(vertical = 36.dp),
+                            value = topEnd.toFloat(),
+                            onValueChange = {
+                                topEnd = it.toInt()
+                            }, valueRange = 0f .. 100f
+                        )
+                        Slider(
+                            modifier = Modifier.padding(vertical = 36.dp),
+                            value = bottomStart.toFloat(),
+                            onValueChange = {
+                                bottomStart = it.toInt()
+                            }, valueRange = 0f .. 100f
+                        )
+                        Slider(
+                            modifier = Modifier.padding(vertical = 36.dp),
+                            value = bottomEnd.toFloat(),
+                            onValueChange = {
+                                bottomEnd = it.toInt()
+                            }, valueRange = 0f .. 100f
+                        )
+
 
 //                        Slider(
 //                            modifier = Modifier.padding(vertical = 36.dp),
@@ -102,7 +140,6 @@ fun GreetingPreview() {
                     .fillMaxSize()
                     .padding(24.dp),
                 skewed = 0.2f,
-                cornerRadius = 32.dp
             )
         }
     }
