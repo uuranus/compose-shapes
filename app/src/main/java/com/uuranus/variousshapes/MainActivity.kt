@@ -1,6 +1,7 @@
 package com.uuranus.variousshapes
 
 import android.os.Bundle
+import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -8,9 +9,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -26,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -47,6 +52,9 @@ class MainActivity : ComponentActivity() {
                 ) {
                     var innerRadiusRatio by remember { mutableFloatStateOf(0.5f) }
                     var numOfPoints by remember { mutableFloatStateOf(5f) }
+                    var smoothing by remember { mutableFloatStateOf(0.0f) }
+                    var outerCornerSize by remember { mutableFloatStateOf(0.0f) }
+                    var innerCornerSize by remember { mutableFloatStateOf(0.0f) }
                     var skewed by remember { mutableFloatStateOf(0.2f) }
 
                     var topStart by remember { mutableStateOf(0) }
@@ -71,52 +79,86 @@ class MainActivity : ComponentActivity() {
                                 .weight(0.5f)
                                 .background(
                                     Color.Gray,
-                                    shape = RoundedParallelogramShape(
-                                        skewed = skewed,
-                                        topStart = topStart.dp,
-                                        topEnd = topEnd.dp,
-                                        bottomStart = bottomStart.dp,
-                                        bottomEnd = bottomEnd.dp,
+                                    shape = RoundedStarPolygonShape(
+                                        numOfPoints = numOfPoints.toInt(),
+                                        innerRadius = innerRadiusRatio,
+                                        outCornerSize = outerCornerSize.toInt().dp,
+                                        inCornerSize = innerCornerSize.toInt().dp,
+                                        smoothing = smoothing
                                     )
                                 )
                         ) {
                         }
 
-                        Slider(
-                            modifier = Modifier.padding(vertical = 12.dp),
-                            value = skewed,
-                            onValueChange = {
-                                skewed = it
-                            }
-                        )
-                        Slider(
-                            modifier = Modifier.padding(vertical = 12.dp),
-                            value = topStart.toFloat(),
-                            onValueChange = {
-                                topStart = it.toInt()
-                            }, valueRange = 0f..100f
-                        )
-                        Slider(
-                            modifier = Modifier.padding(vertical = 12.dp),
-                            value = topEnd.toFloat(),
-                            onValueChange = {
-                                topEnd = it.toInt()
-                            }, valueRange = 0f..100f
-                        )
-                        Slider(
-                            modifier = Modifier.padding(vertical = 12.dp),
-                            value = bottomStart.toFloat(),
-                            onValueChange = {
-                                bottomStart = it.toInt()
-                            }, valueRange = 0f..100f
-                        )
-                        Slider(
-                            modifier = Modifier.padding(vertical = 24.dp),
-                            value = bottomEnd.toFloat(),
-                            onValueChange = {
-                                bottomEnd = it.toInt()
-                            }, valueRange = 0f..100f
-                        )
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "innerRadiusRatio"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = innerRadiusRatio,
+                                onValueChange = {
+                                    innerRadiusRatio = it
+                                }
+                            )
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "numOfPoints"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = numOfPoints,
+                                onValueChange = {
+                                    numOfPoints = it
+                                },
+                                valueRange = 1f..100f
+                            )
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "outerCornerSize"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = outerCornerSize,
+                                onValueChange = {
+                                    outerCornerSize = it
+                                }, valueRange = 0f..100f
+                            )
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "innerCornerSize"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = innerCornerSize,
+                                onValueChange = {
+                                    innerCornerSize = it
+                                },valueRange = 0f..100f
+                            )
+                        }
 
                         Box(
                             modifier = Modifier.weight(0.3f)

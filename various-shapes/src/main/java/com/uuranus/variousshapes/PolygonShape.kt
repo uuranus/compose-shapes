@@ -69,6 +69,7 @@ class StarPolygonShape(private val numOfPoints: Int, private val innerRadiusRati
         }
 
         path.close()
+
         return Outline.Generic(path)
     }
 }
