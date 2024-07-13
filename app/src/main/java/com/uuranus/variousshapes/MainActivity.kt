@@ -83,8 +83,7 @@ class MainActivity : ComponentActivity() {
                                         numOfPoints = numOfPoints.toInt(),
                                         innerRadius = innerRadiusRatio,
                                         outCornerSize = outerCornerSize.toInt().dp,
-                                        inCornerSize = innerCornerSize.toInt().dp,
-                                        smoothing = smoothing
+                                        inCornerSize = innerCornerSize.toInt().dp
                                     )
                                 )
                         ) {
@@ -122,7 +121,8 @@ class MainActivity : ComponentActivity() {
                                 onValueChange = {
                                     numOfPoints = it
                                 },
-                                valueRange = 1f..100f
+                                valueRange = 1f..100f,
+                                steps = 100
                             )
                         }
                         Row(
@@ -139,7 +139,9 @@ class MainActivity : ComponentActivity() {
                                 value = outerCornerSize,
                                 onValueChange = {
                                     outerCornerSize = it
-                                }, valueRange = 0f..100f
+                                },
+                                valueRange = 0f..100f,
+                                steps = 100,
                             )
                         }
                         Row(
@@ -156,7 +158,7 @@ class MainActivity : ComponentActivity() {
                                 value = innerCornerSize,
                                 onValueChange = {
                                     innerCornerSize = it
-                                },valueRange = 0f..100f
+                                }, valueRange = 0f..100f
                             )
                         }
 
