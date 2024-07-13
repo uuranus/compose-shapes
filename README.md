@@ -17,10 +17,18 @@ Various shapes drawn with Jetpack Compose
       
 ```kotlin
 
-ParallelogramShape(
-  skewed = 0.2f,
-  modifier = Modifier.fillMaxSize()
-)
+Box(
+    modifier = Modifier
+        .fillMaxWidth()
+        .background(
+            color = Color.Gray,
+            shape = ParallelogramShape(
+                skewed = 0.2f
+            )
+        )
+) {
+    // Content goes here
+}
 
 ```
 </td>
@@ -33,9 +41,16 @@ ParallelogramShape(
       
 ```kotlin
 
-RhombusShape(
-  modifier = Modifier.fillMaxSize()
-)
+Box(
+    modifier = Modifier
+        .fillMaxWidth()
+        .background(
+            color = Color.Gray,
+            shape = RhombusShape()
+        )
+) {
+    // Content goes here
+}
 
 ```
 
@@ -49,11 +64,19 @@ RhombusShape(
       
 ```kotlin
 
-TrapezoidShape(
-  leftSkewed = 0.2f,
-  rightSkewed = 0.2f,
-  modifier = Modifier.fillMaxSize()
-)
+Box(
+    modifier = Modifier
+        .fillMaxWidth()
+        .background(
+            color = Color.Gray,
+            shape = TrapezoidShape(
+                leftSkewed = 0.2f,
+                rightSkewed = 0.2f
+            )
+        )
+) {
+    // Content goes here
+}
 
 ```
 
@@ -76,10 +99,18 @@ TrapezoidShape(
       
 ```kotlin
 
-PolygonShape(
-  numOfPoints = 5,
-  modifier = Modifier.fillMaxWidth(),
-)
+Box(
+    modifier = Modifier
+        .fillMaxWidth()
+        .background(
+            color = Color.Gray,
+            shape = PolygonShape(
+                numOfPoints = numOfPoints.toInt()
+            )
+        )
+) {
+    // Content goes here
+}
 
 ```
 </td>
@@ -94,20 +125,54 @@ PolygonShape(
   <th>Screenshot</th>
   <th>Code</th>
 
-  <tr>
+<tr>
     <td>Star</td>
-    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/b2efa930-6365-4bd3-8220-e4941fe08eb8" width = "300"></td>
+    <td><img src = "https://github.com/user-attachments/assets/a63a4d52-2eeb-47b9-b06e-38ad6de1fbdb" width = "300"></td>
+<td>
+
+```kotlin
+
+Box(
+    modifier = Modifier
+        .fillMaxWidth()
+        .background(
+            color = Color.Gray,
+            shape = StarPolygonShape(
+                numOfPoints = numOfPoints.toInt(),
+                innerRadiusRatio = 0.5f
+            )
+        )
+) {
+    // Content goes here
+}
+
+```
+</td>
+
+</tr>
+
+  <tr>
+    <td>Rounded Star</td>
+    <td><img src = "https://github.com/user-attachments/assets/7ad089ea-2b96-4c72-a53a-ce6febbd044b" width = "300"></td>
 <td>
       
 ```kotlin
 
-StarShape(
-  innerRadiusRatio = 0.5f,
-  numOfPoints = 5,
-  modifier = Modifier
-    .fillMaxWidth()
-)
-
+Box(
+    modifier = Modifier
+        .fillMaxWidth()
+        .background(
+            color = Color.Gray,
+            shape = RoundedStarPolygonShape(
+                numOfPoints = numOfPoints.toInt(),
+                innerRadius = innerRadiusRatio,
+                outCornerSize = outerCornerSize.toInt().dp,
+                inCornerSize = innerCornerSize.toInt().dp
+            )
+        )
+) {
+    // Content goes here
+}
 ```
 </td>
 
