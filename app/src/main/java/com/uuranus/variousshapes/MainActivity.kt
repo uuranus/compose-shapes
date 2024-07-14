@@ -1,11 +1,9 @@
 package com.uuranus.variousshapes
 
 import android.os.Bundle
-import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,9 +13,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.Surface
@@ -29,12 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.uuranus.variousshapes.ui.theme.VariousShapesTheme
@@ -57,10 +47,10 @@ class MainActivity : ComponentActivity() {
                     var innerCornerSize by remember { mutableFloatStateOf(0.0f) }
                     var skewed by remember { mutableFloatStateOf(0.2f) }
 
-                    var topStart by remember { mutableStateOf(0) }
-                    var topEnd by remember { mutableStateOf(0) }
-                    var bottomStart by remember { mutableStateOf(0) }
-                    var bottomEnd by remember { mutableStateOf(0) }
+                    var top by remember { mutableStateOf(0f) }
+                    var start by remember { mutableStateOf(0f) }
+                    var end by remember { mutableStateOf(0f) }
+                    var bottom by remember { mutableStateOf(0f) }
 
                     Column(
                         modifier = Modifier
@@ -70,20 +60,20 @@ class MainActivity : ComponentActivity() {
                     ) {
 
                         Box(
-                            modifier = Modifier.weight(0.3f)
+                            modifier = Modifier.weight(0.4f)
                         )
 
                         Box(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .weight(0.5f)
+                                .weight(0.4f)
                                 .background(
                                     Color.Gray,
-                                    shape = RoundedStarPolygonShape(
-                                        numOfPoints = numOfPoints.toInt(),
-                                        innerRadius = innerRadiusRatio,
-                                        outCornerSize = outerCornerSize.toInt().dp,
-                                        inCornerSize = innerCornerSize.toInt().dp
+                                    shape = RhombusShape(
+                                        top = top.toInt().dp,
+                                        start = start.toInt().dp,
+                                        end =end.toInt().dp,
+                                        bottom = bottom.toInt().dp,
                                     )
                                 )
                         ) {
@@ -96,14 +86,14 @@ class MainActivity : ComponentActivity() {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                "innerRadiusRatio"
+                                "topCornerRadius"
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Slider(
-                                value = innerRadiusRatio,
+                                value = top,
                                 onValueChange = {
-                                    innerRadiusRatio = it
-                                }
+                                    top = it
+                                }, valueRange = 0f..100f
                             )
                         }
                         Row(
@@ -113,16 +103,14 @@ class MainActivity : ComponentActivity() {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                "numOfPoints"
+                                "startCornerRadius"
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Slider(
-                                value = numOfPoints,
+                                value = start,
                                 onValueChange = {
-                                    numOfPoints = it
-                                },
-                                valueRange = 1f..100f,
-                                steps = 100
+                                    start = it
+                                }, valueRange = 0f..100f
                             )
                         }
                         Row(
@@ -132,16 +120,14 @@ class MainActivity : ComponentActivity() {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                "outerCornerSize"
+                                "endCornerRadius"
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Slider(
-                                value = outerCornerSize,
+                                value = end,
                                 onValueChange = {
-                                    outerCornerSize = it
-                                },
-                                valueRange = 0f..100f,
-                                steps = 100,
+                                    end = it
+                                }, valueRange = 0f..100f
                             )
                         }
                         Row(
@@ -151,19 +137,19 @@ class MainActivity : ComponentActivity() {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                "innerCornerSize"
+                                "bottomCornerRadius"
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Slider(
-                                value = innerCornerSize,
+                                value = bottom,
                                 onValueChange = {
-                                    innerCornerSize = it
+                                    bottom = it
                                 }, valueRange = 0f..100f
                             )
                         }
 
                         Box(
-                            modifier = Modifier.weight(0.3f)
+                            modifier = Modifier.weight(0.4f)
                         )
 
                     }
@@ -191,3 +177,4 @@ fun GreetingPreview() {
         }
     }
 }
+

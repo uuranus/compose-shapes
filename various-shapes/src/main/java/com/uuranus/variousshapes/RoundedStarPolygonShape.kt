@@ -65,13 +65,13 @@ class RoundedStarPolygonShape(
         val polygonDist = sqrt(dx * dx + dy * dy)
 
         val outerCornerRadius = minOf(
-            outerCornerSize.toPx(size, density),
-            polygonDist * tan((outerPointAngleDegree / 2f).toRadian())
+            outerCornerSize.toPx(size, density).toDouble(),
+            polygonDist * tan((outerPointAngleDegree / 2.0).toRadian())
         )
 
         val innerCornerRadius = minOf(
-            innerCornerSize.toPx(size, density),
-            polygonDist * tan((innerPointAngleDegree / 2f).toRadian())
+            innerCornerSize.toPx(size, density).toDouble(),
+            polygonDist * tan((innerPointAngleDegree / 2.0).toRadian())
         )
 
         for (i in vertices.indices) {
@@ -85,7 +85,7 @@ class RoundedStarPolygonShape(
             val curCornerRadius =
                 if (i % 2 == 0) outerCornerRadius else innerCornerRadius
 
-            val circleTangentDist = curCornerRadius / tan((curPointAngleDegree / 2f).toRadian())
+            val circleTangentDist = curCornerRadius / tan((curPointAngleDegree / 2.0).toRadian())
 
             val tangentRatio = circleTangentDist / polygonDist
 
@@ -112,14 +112,14 @@ class RoundedStarPolygonShape(
             )
 
             val startAngleDegree = atan2(
-                anchor1.second.toDouble() - circleCenter.second.toDouble(),
-                anchor1.first.toDouble() - circleCenter.first.toDouble(),
-            ).toFloat().toDegree()
+                anchor1.second - circleCenter.second,
+                anchor1.first - circleCenter.first,
+            ).toDegree()
 
             val endAngleDegree = atan2(
-                anchor2.second.toDouble() - circleCenter.second.toDouble(),
-                anchor2.first.toDouble() - circleCenter.first.toDouble()
-            ).toFloat().toDegree()
+                anchor2.second - circleCenter.second,
+                anchor2.first - circleCenter.first
+            ).toDegree()
 
             var sweepAngle = if (endAngleDegree < startAngleDegree) {
                 startAngleDegree - endAngleDegree
@@ -139,13 +139,13 @@ class RoundedStarPolygonShape(
             path.arcTo(
                 rect = Rect(
                     offset = Offset(
-                        circleCenter.first - arcRadius,
-                        circleCenter.second - arcRadius
+                        circleCenter.first.toFloat() - arcRadius.toFloat(),
+                        circleCenter.second.toFloat() - arcRadius.toFloat()
                     ),
-                    size = Size(arcRadius * 2, arcRadius * 2)
+                    size = Size(arcRadius.toFloat() * 2, arcRadius.toFloat() * 2)
                 ),
-                startAngleDegrees = startAngleDegree,
-                sweepAngleDegrees = if (i % 2 == 0) sweepAngle else -sweepAngle,
+                startAngleDegrees = startAngleDegree.toFloat(),
+                sweepAngleDegrees = if (i % 2 == 0) sweepAngle.toFloat() else -sweepAngle.toFloat(),
                 forceMoveTo = false
             )
         }
@@ -169,20 +169,12 @@ fun RoundedStarPolygonShape(
 
 fun RoundedStarPolygonShape(
     numOfPoints: Int,
-    innerRadius: Float,
-    outCornerSize: Dp = 0.dp,
-    inCornerSize: Dp = 0.dp,
+    innerRadiusRatio: Float,
+    outerCornerSize: Dp = 0.dp,
+    innerCornerSize: Dp = 0.dp,
 ) = RoundedStarPolygonShape(
     numOfPoints = numOfPoints,
-    innerRadiusRatio = innerRadius,
-    outerCornerSize = CornerSize(outCornerSize),
-    innerCornerSize = CornerSize(inCornerSize)
+    innerRadiusRatio = innerRadiusRatio,
+    outerCornerSize = CornerSize(outerCornerSize),
+    innerCornerSize = CornerSize(innerCornerSize)
 )
-
-private fun Float.toRadian(): Float {
-    return (this * PI / 180).toFloat()
-}
-
-private fun Float.toDegree(): Float {
-    return (this * 180 / PI).toFloat()
-}
