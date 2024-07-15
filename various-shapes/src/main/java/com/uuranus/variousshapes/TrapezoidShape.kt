@@ -114,6 +114,8 @@ class TrapezoidShape(
                 sweepAngleDegrees = 180f - 2 * bottomStartHalfAngleDegree,
                 forceMoveTo = false
             )
+
+            close()
         }
         return Outline.Generic(path)
     }

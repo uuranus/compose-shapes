@@ -70,9 +70,8 @@ class MainActivity : ComponentActivity() {
                                 .weight(0.4f)
                                 .background(
                                     Color.Gray,
-                                    shape = TrapezoidShape(
-                                        startSkewed = startSkewed,
-                                        endSkewed = endSkewed,
+                                    shape = RoundedParallelogramShape(
+                                        skewed = 0.2f,
                                         topStart = top.toInt().dp,
                                         topEnd = start.toInt().dp,
                                         bottomStart = end.toInt().dp,

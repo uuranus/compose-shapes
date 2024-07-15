@@ -121,6 +121,7 @@ class RhombusShape(
                 forceMoveTo = false
             )
 
+            close()
         }
 
         return Outline.Generic(path)
