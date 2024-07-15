@@ -25,27 +25,3 @@ class ParallelogramShape(private val skewed: Float) : Shape {
         return Outline.Generic(path)
     }
 }
-
-class TrapezoidShape(
-    private val leftSkewed: Float,
-    private val rightSkewed: Float
-) : Shape {
-    override fun createOutline(
-        size: Size,
-        layoutDirection: LayoutDirection,
-        density: Density
-    ): Outline {
-        val path = Path()
-        val leftSkewedWidth = size.width * leftSkewed
-        val rightSkewedWidth = size.width * rightSkewed
-        path.apply {
-            moveTo(leftSkewedWidth, 0f)
-            lineTo(size.width - rightSkewedWidth, 0f)
-            lineTo(size.width, size.height)
-            lineTo(0f, size.height)
-            close()
-        }
-        return Outline.Generic(path)
-    }
-}
-

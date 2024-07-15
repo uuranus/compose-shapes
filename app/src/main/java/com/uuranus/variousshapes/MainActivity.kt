@@ -45,7 +45,8 @@ class MainActivity : ComponentActivity() {
                     var smoothing by remember { mutableFloatStateOf(0.0f) }
                     var outerCornerSize by remember { mutableFloatStateOf(0.0f) }
                     var innerCornerSize by remember { mutableFloatStateOf(0.0f) }
-                    var skewed by remember { mutableFloatStateOf(0.2f) }
+                    var startSkewed by remember { mutableFloatStateOf(0.2f) }
+                    var endSkewed by remember { mutableFloatStateOf(0.2f) }
 
                     var top by remember { mutableStateOf(0f) }
                     var start by remember { mutableStateOf(0f) }
@@ -69,16 +70,52 @@ class MainActivity : ComponentActivity() {
                                 .weight(0.4f)
                                 .background(
                                     Color.Gray,
-                                    shape = RhombusShape(
-                                        top = top.toInt().dp,
-                                        start = start.toInt().dp,
-                                        end =end.toInt().dp,
-                                        bottom = bottom.toInt().dp,
+                                    shape = TrapezoidShape(
+                                        startSkewed = startSkewed,
+                                        endSkewed = endSkewed,
+                                        topStart = top.toInt().dp,
+                                        topEnd = start.toInt().dp,
+                                        bottomStart = end.toInt().dp,
+                                        bottomEnd = bottom.toInt().dp,
                                     )
                                 )
                         ) {
                         }
 
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "startSkewed"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = startSkewed,
+                                onValueChange = {
+                                    startSkewed = it
+                                }, valueRange = 0f..1f
+                            )
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "endSkewed"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = endSkewed,
+                                onValueChange = {
+                                    endSkewed = it
+                                }, valueRange =  0f..1f
+                            )
+                        }
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()

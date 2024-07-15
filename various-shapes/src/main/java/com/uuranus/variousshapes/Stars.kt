@@ -37,7 +37,6 @@ fun StarShape(innerRadiusRatio: Float, numOfPoints:Int, modifier: Modifier) {
 
         path.close()
 
-
         drawPath(
             path = path,
             color = Color.Black,

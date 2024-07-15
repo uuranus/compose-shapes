@@ -123,8 +123,6 @@ class RoundedParallelogramShape(
     }
 }
 
-
-
 fun RoundedParallelogramShape(skewed: Float, cornerSize: CornerSize) =
     RoundedParallelogramShape(skewed, cornerSize, cornerSize, cornerSize, cornerSize)
 
