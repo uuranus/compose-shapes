@@ -41,35 +41,3 @@ class PolygonShape(
         return Outline.Generic(path)
     }
 }
-
-class StarPolygonShape(private val numOfPoints: Int, private val innerRadiusRatio: Float = 0.5f) :
-    Shape {
-    override fun createOutline(
-        size: Size,
-        layoutDirection: LayoutDirection,
-        density: Density,
-    ): Outline {
-        val path = Path()
-        val centerX = size.width / 2
-        val centerY = size.height / 2
-        val outerRadius = min(centerX, centerY)
-        val innerRadius = outerRadius * innerRadiusRatio
-        val angle = 2.0 * PI / (numOfPoints * 2)
-
-        path.moveTo(
-            centerX + (outerRadius * sin(0.0)).toFloat(),
-            centerY - (outerRadius * cos(0.0)).toFloat()
-        )
-
-        for (i in 1 until numOfPoints * 2) {
-            val r = if (i % 2 == 0) outerRadius else innerRadius
-            val x = centerX + (r * sin(i * angle)).toFloat()
-            val y = centerY - (r * cos(i * angle)).toFloat()
-            path.lineTo(x, y)
-        }
-
-        path.close()
-
-        return Outline.Generic(path)
-    }
-}

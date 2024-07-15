@@ -70,12 +70,11 @@ class MainActivity : ComponentActivity() {
                                 .weight(0.4f)
                                 .background(
                                     Color.Gray,
-                                    shape = RoundedParallelogramShape(
-                                        skewed = 0.2f,
-                                        topStart = top.toInt().dp,
-                                        topEnd = start.toInt().dp,
-                                        bottomStart = end.toInt().dp,
-                                        bottomEnd = bottom.toInt().dp,
+                                    shape = StarPolygonShape(
+                                        numOfPoints = numOfPoints.toInt(),
+                                        innerRadiusRatio = 0.2f,
+                                        outerCornerSize = outerCornerSize.dp,
+                                        innerCornerSize = innerCornerSize.dp
                                     )
                                 )
                         ) {
@@ -88,47 +87,13 @@ class MainActivity : ComponentActivity() {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                "startSkewed"
+                                "numOfPoints"
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Slider(
-                                value = startSkewed,
+                                value = numOfPoints,
                                 onValueChange = {
-                                    startSkewed = it
-                                }, valueRange = 0f..1f
-                            )
-                        }
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                "endSkewed"
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Slider(
-                                value = endSkewed,
-                                onValueChange = {
-                                    endSkewed = it
-                                }, valueRange =  0f..1f
-                            )
-                        }
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                "topCornerRadius"
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Slider(
-                                value = top,
-                                onValueChange = {
-                                    top = it
+                                    numOfPoints = it
                                 }, valueRange = 0f..100f
                             )
                         }
@@ -139,13 +104,13 @@ class MainActivity : ComponentActivity() {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                "startCornerRadius"
+                                "innerCornerRadius"
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Slider(
-                                value = start,
+                                value = innerCornerSize,
                                 onValueChange = {
-                                    start = it
+                                    innerCornerSize = it
                                 }, valueRange = 0f..100f
                             )
                         }
@@ -156,33 +121,67 @@ class MainActivity : ComponentActivity() {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                "endCornerRadius"
+                                "outerCornerRadius"
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Slider(
-                                value = end,
+                                value = outerCornerSize,
                                 onValueChange = {
-                                    end = it
+                                    outerCornerSize = it
                                 }, valueRange = 0f..100f
                             )
                         }
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                "bottomCornerRadius"
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Slider(
-                                value = bottom,
-                                onValueChange = {
-                                    bottom = it
-                                }, valueRange = 0f..100f
-                            )
-                        }
+//                        Row(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .padding(vertical = 12.dp),
+//                            verticalAlignment = Alignment.CenterVertically
+//                        ) {
+//                            Text(
+//                                "startCornerRadius"
+//                            )
+//                            Spacer(modifier = Modifier.width(4.dp))
+//                            Slider(
+//                                value = start,
+//                                onValueChange = {
+//                                    start = it
+//                                }, valueRange = 0f..100f
+//                            )
+//                        }
+//                        Row(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .padding(vertical = 12.dp),
+//                            verticalAlignment = Alignment.CenterVertically
+//                        ) {
+//                            Text(
+//                                "endCornerRadius"
+//                            )
+//                            Spacer(modifier = Modifier.width(4.dp))
+//                            Slider(
+//                                value = end,
+//                                onValueChange = {
+//                                    end = it
+//                                }, valueRange = 0f..100f
+//                            )
+//                        }
+//                        Row(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .padding(vertical = 12.dp),
+//                            verticalAlignment = Alignment.CenterVertically
+//                        ) {
+//                            Text(
+//                                "bottomCornerRadius"
+//                            )
+//                            Spacer(modifier = Modifier.width(4.dp))
+//                            Slider(
+//                                value = bottom,
+//                                onValueChange = {
+//                                    bottom = it
+//                                }, valueRange = 0f..100f
+//                            )
+//                        }
 
                         Box(
                             modifier = Modifier.weight(0.4f)
@@ -204,12 +203,7 @@ fun GreetingPreview() {
 
         Column {
 
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(24.dp)
-                    .background(Color.Gray, shape = StarPolygonShape(numOfPoints = 5))
-            )
+
         }
     }
 }

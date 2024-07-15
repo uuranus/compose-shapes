@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import kotlin.math.atan
 import kotlin.math.tan
 
-class RoundedParallelogramShape(
+class ParallelogramShape(
     private val skewed: Float = 0.2f,
     private val topStart: CornerSize,
     private val topEnd: CornerSize,
@@ -111,19 +111,19 @@ class RoundedParallelogramShape(
     }
 }
 
-fun RoundedParallelogramShape(skewed: Float, cornerSize: CornerSize) =
-    RoundedParallelogramShape(skewed, cornerSize, cornerSize, cornerSize, cornerSize)
+fun ParallelogramShape(skewed: Float, cornerSize: CornerSize) =
+    ParallelogramShape(skewed, cornerSize, cornerSize, cornerSize, cornerSize)
 
-fun RoundedParallelogramShape(skewed: Float, size: Dp) =
-    RoundedParallelogramShape(skewed, CornerSize(size))
+fun ParallelogramShape(skewed: Float, size: Dp) =
+    ParallelogramShape(skewed, CornerSize(size))
 
-fun RoundedParallelogramShape(
+fun ParallelogramShape(
     skewed: Float,
     topStart: Dp = 0.dp,
     topEnd: Dp = 0.dp,
     bottomEnd: Dp = 0.dp,
     bottomStart: Dp = 0.dp,
-) = RoundedParallelogramShape(
+) = ParallelogramShape(
     skewed = skewed,
     topStart = CornerSize(topStart),
     topEnd = CornerSize(topEnd),

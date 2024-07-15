@@ -19,9 +19,9 @@ import kotlin.math.sin
 import kotlin.math.sqrt
 import kotlin.math.tan
 
-class RoundedStarPolygonShape(
-    private val numOfPoints: Int = 5,
-    private val innerRadiusRatio: Float = 0.5f,
+class StarPolygonShape(
+    private val numOfPoints: Int,
+    private val innerRadiusRatio: Float,
     private val outerCornerSize: CornerSize,
     private val innerCornerSize: CornerSize,
 ) : Shape {
@@ -157,22 +157,22 @@ class RoundedStarPolygonShape(
 }
 
 
-fun RoundedStarPolygonShape(
+fun StarPolygonShape(
     numOfPoints: Int, innerRadiusRatio: Float, cornerSize: CornerSize,
 ) =
-    RoundedStarPolygonShape(numOfPoints, innerRadiusRatio, cornerSize, cornerSize)
+    StarPolygonShape(numOfPoints, innerRadiusRatio, cornerSize, cornerSize)
 
-fun RoundedStarPolygonShape(
+fun StarPolygonShape(
     numOfPoints: Int, innerRadiusRatio: Float, size: Dp,
 ) =
-    RoundedStarPolygonShape(numOfPoints, innerRadiusRatio, CornerSize(size))
+    StarPolygonShape(numOfPoints, innerRadiusRatio, CornerSize(size))
 
-fun RoundedStarPolygonShape(
+fun StarPolygonShape(
     numOfPoints: Int,
     innerRadiusRatio: Float,
     outerCornerSize: Dp = 0.dp,
     innerCornerSize: Dp = 0.dp,
-) = RoundedStarPolygonShape(
+) = StarPolygonShape(
     numOfPoints = numOfPoints,
     innerRadiusRatio = innerRadiusRatio,
     outerCornerSize = CornerSize(outerCornerSize),
