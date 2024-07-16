@@ -12,19 +12,23 @@ Various shapes drawn with Jetpack Compose
 
   <tr>
     <td>Parallelogram</td>
-    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/a8a30f67-46e9-4c8d-a641-3cd243363d61" width = "300"></td>
+    <td><img src = "https://github.com/user-attachments/assets/5c445573-09b1-4050-bfdf-15917061944c" width = "300"></td>
 <td>
-      
+
 ```kotlin
 
 Box(
     modifier = Modifier
         .fillMaxWidth()
         .background(
-            color = Color.Gray,
-            shape = ParallelogramShape(
-                skewed = 0.2f
-            )
+            Color.Gray,
+	    shape = ParallelogramShape(
+	        skewed = 0.3f,
+    		topStart = 24.dp,
+   	 	bottomEnd = 24.dp,
+    		topEnd = 12.dp,
+    		bottomStart = 12.dp
+	    )
         )
 ) {
     // Content goes here
@@ -36,20 +40,25 @@ Box(
 
 <tr>
     <td>Rhombus</td>
-    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/9d00e04e-ab4e-4e37-aba8-3fc77fe36471" width = "300"></td>
+    <td><img src = "https://github.com/user-attachments/assets/23fe6611-de19-4318-9030-fb1ced2abc0f" width = "300"></td>
 <td>
-      
+
 ```kotlin
 
 Box(
     modifier = Modifier
-        .fillMaxWidth()
+        .fillMaxSize()
+        .weight(0.5f)
         .background(
-            color = Color.Gray,
-            shape = RhombusShape()
+            Color.Gray,
+            shape = RhombusShape(
+                top = 24.dp,
+                start = 12.dp,
+                end = 12.dp,
+                bottom = 24.dp
+            )
         )
 ) {
-    // Content goes here
 }
 
 ```
@@ -59,23 +68,27 @@ Box(
 
   <tr>
     <td>Trapezoid</td>
-    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/c8ca4b1d-3a8b-45f6-9877-710398a95929" width = "300"></td>
+    <td><img src = "https://github.com/user-attachments/assets/9f7b62ef-fe0c-4cae-a715-53417e1bf697" width = "300"></td>
 <td>
-      
+
 ```kotlin
 
 Box(
     modifier = Modifier
-        .fillMaxWidth()
+        .fillMaxSize()
+        .weight(0.5f)
         .background(
-            color = Color.Gray,
+            Color.Gray,
             shape = TrapezoidShape(
-                leftSkewed = 0.2f,
-                rightSkewed = 0.2f
+                startSkewed = 0.2f,
+                endSkewed = 0.4f,
+                topStart = 12.dp,
+                topEnd = 12.dp,
+                bottomStart = 12.dp,
+                bottomEnd = 12.dp
             )
         )
 ) {
-    // Content goes here
 }
 
 ```
@@ -116,63 +129,29 @@ Box(
 </td>
 
 </tr>
-</table>
-
-# Stars
-
-<table>
-  <th>Name</th>
-  <th>Screenshot</th>
-  <th>Code</th>
-
 <tr>
-    <td>Star</td>
-    <td><img src = "https://github.com/user-attachments/assets/a63a4d52-2eeb-47b9-b06e-38ad6de1fbdb" width = "300"></td>
+    <td>Star Polygon</td>
+    <td><img src = "https://github.com/user-attachments/assets/edc18908-705b-4334-b252-ad0dd6252f1a" width = "300"></td>
 <td>
 
 ```kotlin
 
 Box(
     modifier = Modifier
-        .fillMaxWidth()
+        .fillMaxSize()
+        .weight(0.5f)
         .background(
-            color = Color.Gray,
+            Color.Gray,
             shape = StarPolygonShape(
-                numOfPoints = numOfPoints.toInt(),
-                innerRadiusRatio = 0.5f
+                numOfPoints = 5,
+                innerRadiusRatio = 0.5f,
+                outerCornerSize = 24.dp,
+                innerCornerSize = 12.dp
             )
         )
 ) {
-    // Content goes here
 }
 
-```
-</td>
-
-</tr>
-
-  <tr>
-    <td>Rounded Star</td>
-    <td><img src = "https://github.com/user-attachments/assets/7ad089ea-2b96-4c72-a53a-ce6febbd044b" width = "300"></td>
-<td>
-      
-```kotlin
-
-Box(
-    modifier = Modifier
-        .fillMaxWidth()
-        .background(
-            color = Color.Gray,
-            shape = RoundedStarPolygonShape(
-                numOfPoints = numOfPoints.toInt(),
-                innerRadius = innerRadiusRatio,
-                outCornerSize = outerCornerSize.toInt().dp,
-                inCornerSize = innerCornerSize.toInt().dp
-            )
-        )
-) {
-    // Content goes here
-}
 ```
 </td>
 
