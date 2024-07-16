@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Slider
@@ -40,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize(),
                 ) {
-                    var innerRadiusRatio by remember { mutableFloatStateOf(0.5f) }
+                    var innerRadiusRatio by remember { mutableFloatStateOf(0.4f) }
                     var numOfPoints by remember { mutableFloatStateOf(5f) }
                     var smoothing by remember { mutableFloatStateOf(0.0f) }
                     var outerCornerSize by remember { mutableFloatStateOf(0.0f) }
@@ -62,17 +63,24 @@ class MainActivity : ComponentActivity() {
 
                         Box(
                             modifier = Modifier.weight(0.4f)
-                        )
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .width(30.dp)
+                                    .height(30.dp)
+                                    .background(Color.LightGray)
+                            )
+                        }
 
                         Box(
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(0.4f)
+                                .fillMaxSize()
+                                .weight(0.5f)
                                 .background(
-                                    Color.Gray,
+                                    Color.Blue,
                                     shape = StarPolygonShape(
                                         numOfPoints = numOfPoints.toInt(),
-                                        innerRadiusRatio = 0.2f,
+                                        innerRadiusRatio = innerRadiusRatio,
                                         outerCornerSize = outerCornerSize.dp,
                                         innerCornerSize = innerCornerSize.dp
                                     )
@@ -94,7 +102,24 @@ class MainActivity : ComponentActivity() {
                                 value = numOfPoints,
                                 onValueChange = {
                                     numOfPoints = it
-                                }, valueRange = 0f..100f
+                                }, valueRange = 0f..10f
+                            )
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "innerRadiusRatio"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = innerRadiusRatio,
+                                onValueChange = {
+                                    innerRadiusRatio = it
+                                }, valueRange = 0f..1f
                             )
                         }
                         Row(
@@ -111,7 +136,8 @@ class MainActivity : ComponentActivity() {
                                 value = innerCornerSize,
                                 onValueChange = {
                                     innerCornerSize = it
-                                }, valueRange = 0f..100f
+                                }, valueRange = 0f..100f,
+                                steps = 100
                             )
                         }
                         Row(
@@ -128,7 +154,8 @@ class MainActivity : ComponentActivity() {
                                 value = outerCornerSize,
                                 onValueChange = {
                                     outerCornerSize = it
-                                }, valueRange = 0f..100f
+                                }, valueRange = 0f..30f,
+                                steps = 30
                             )
                         }
 //                        Row(
