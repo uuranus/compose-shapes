@@ -41,10 +41,9 @@ class ParallelogramShape(
             arcTo(
                 rect = Rect(
                     offset = Offset(
-                        width - topEnd.toPx(size, density) / halfTan - topEnd.toPx(
-                            size,
-                            density
-                        ), 0f
+                        width - topEnd.toPx(size, density)
+                                / halfTan - topEnd.toPx(size, density),
+                        0f
                     ),
                     size = Size(topEnd.toPx(size, density) * 2, topEnd.toPx(size, density) * 2)
                 ),

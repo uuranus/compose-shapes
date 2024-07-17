@@ -7,6 +7,12 @@ data class Point(
     val y: Float,
 )
 
+enum class CornerStyle {
+    ROUNDED,
+    INNER_ROUNDED,
+    CUT
+}
+
 internal fun Double.toRadian(): Double {
     return (this * PI / 180.0)
 }
