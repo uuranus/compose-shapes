@@ -2,17 +2,45 @@
 Various shapes drawn with Jetpack Compose
 
 ![compose shapes thumbnail](https://github.com/uuranus/compose-shapes/assets/72340294/56357d3c-ad0a-4f15-94b0-f6ca07cc0082)
-# Rectangles
+# Quadrilateral
 
 <table>
 
   <th>Name</th>
   <th>Screenshot</th>
   <th>Code</th>
+  
+  <tr>
+    <td>Rectangle</td>
+    <td><img src = "https://github.com/user-attachments/assets/15a432e6-47a6-4c78-8cad-4e542e91c945" width = "250"></td>
+<td>
+
+```kotlin
+
+Box(
+    modifier = Modifier
+        .fillMaxSize()
+        .weight(0.3f)
+        .background(
+            color = Color.Gray,
+            shape = RectangleShape(
+                topStart = 12.dp,
+                topEnd = 12.dp,
+                bottomStart = 12.dp,
+                bottomEnd = 12.dp
+            )
+        )
+) {
+    // Content goes here
+}
+
+```
+</td>
+  </tr>
 
   <tr>
     <td>Parallelogram</td>
-    <td><img src = "https://github.com/user-attachments/assets/5c445573-09b1-4050-bfdf-15917061944c" width = "300"></td>
+    <td><img src = "https://github.com/user-attachments/assets/5c445573-09b1-4050-bfdf-15917061944c" width = "250"></td>
 <td>
 
 ```kotlin
@@ -40,7 +68,7 @@ Box(
 
 <tr>
     <td>Rhombus</td>
-    <td><img src = "https://github.com/user-attachments/assets/23fe6611-de19-4318-9030-fb1ced2abc0f" width = "300"></td>
+    <td><img src = "https://github.com/user-attachments/assets/23fe6611-de19-4318-9030-fb1ced2abc0f" width = "250"></td>
 <td>
 
 ```kotlin
@@ -68,7 +96,7 @@ Box(
 
   <tr>
     <td>Trapezoid</td>
-    <td><img src = "https://github.com/user-attachments/assets/9f7b62ef-fe0c-4cae-a715-53417e1bf697" width = "300"></td>
+    <td><img src = "https://github.com/user-attachments/assets/9f7b62ef-fe0c-4cae-a715-53417e1bf697" width = "250"></td>
 <td>
 
 ```kotlin
@@ -107,7 +135,7 @@ Box(
 
   <tr>
     <td>Regular Polygons</td>
-    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/99d054ab-d0f9-4040-8847-0e2fbf0b06ae" width = "300"></td>
+    <td><img src = "https://github.com/uuranus/compose-shapes/assets/72340294/99d054ab-d0f9-4040-8847-0e2fbf0b06ae" width = "250"></td>
 <td>
       
 ```kotlin
@@ -131,7 +159,7 @@ Box(
 </tr>
 <tr>
     <td>Star Polygon</td>
-    <td><img src = "https://github.com/user-attachments/assets/edc18908-705b-4334-b252-ad0dd6252f1a" width = "300"></td>
+    <td><img src = "https://github.com/user-attachments/assets/edc18908-705b-4334-b252-ad0dd6252f1a" width = "250"></td>
 <td>
 
 ```kotlin
@@ -156,6 +184,23 @@ Box(
 </td>
 
 </tr>
+</table>
+
+# CornerStyle
+You can customize corners using the CornerStyle enum class.
+
+<table>
+  <th>Rounded</th>
+  <th>Inner Rounded</th>
+  <th>Cut</th>
+
+  <tr>
+    <td><img src = "https://github.com/user-attachments/assets/aec6cb51-2bce-4d26-8a4f-c4f522891475" width = "250"></td>
+    <td><img src = "https://github.com/user-attachments/assets/03ff4b40-ee07-4ea6-ba55-e0fa968ceb30" width = "250"></td>
+    <td><img src = "https://github.com/user-attachments/assets/377b0578-bb4d-4e73-8a1c-111a80e92232" width = "250"></td>
+
+</tr>
+
 </table>
 
 
