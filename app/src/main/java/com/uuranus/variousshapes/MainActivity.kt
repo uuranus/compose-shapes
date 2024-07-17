@@ -75,10 +75,12 @@ class MainActivity : ComponentActivity() {
                                 .weight(0.3f)
                                 .background(
                                     Color.Gray,
-                                    shape = TrapezoidShape(
-                                        skewed = 0.2f,
+                                    shape = StarPolygonShape(
+                                        numOfPoints = 5,
+                                        innerRadiusRatio = 0.4f,
                                         cornerStyle = CornerStyle.INNER_ROUNDED,
-                                        cornerSize = CornerSize(24.dp)
+                                        outerCornerSize = 24.dp,
+                                        innerCornerSize = 8.dp
                                     )
                                 )
                         ) {
