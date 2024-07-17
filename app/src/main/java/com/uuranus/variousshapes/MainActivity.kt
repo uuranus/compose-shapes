@@ -75,9 +75,9 @@ class MainActivity : ComponentActivity() {
                                 .weight(0.5f)
                                 .background(
                                     Color.Gray,
-                                    shape = RectangleShape(
-                                        cornerStyle = CornerStyle.INNER_ROUNDED,
-                                        cornerSize = CornerSize(12.dp)
+                                    shape = RhombusShape(
+                                        cornerStyle = CornerStyle.CUT,
+                                        cornerSize = CornerSize(24.dp)
                                     )
                                 )
                         ) {

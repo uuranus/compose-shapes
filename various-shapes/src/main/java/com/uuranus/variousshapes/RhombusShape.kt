@@ -13,8 +13,10 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import kotlin.math.atan
 import kotlin.math.sin
+import kotlin.math.sqrt
 
 class RhombusShape(
+    private val cornerStyle: CornerStyle,
     private val top: CornerSize,
     private val start: CornerSize,
     private val end: CornerSize,
@@ -25,122 +27,311 @@ class RhombusShape(
         layoutDirection: LayoutDirection,
         density: Density,
     ): Outline {
-        val path = Path()
-        val centerX = size.width / 2
-        val centerY = size.height / 2
 
-        val startEndAngleDegree = atan(
-            centerY / centerX
-        ).toDouble().toDegree()
+        val path = when (cornerStyle) {
+            CornerStyle.ROUNDED -> {
+                drawRoundedRhombusShape(
+                    size = size,
+                    top = top.toPx(size, density),
+                    start = start.toPx(size, density),
+                    end = end.toPx(size, density),
+                    bottom = bottom.toPx(size, density)
+                )
+            }
 
-        val topDownAngleDegree = 90.0 - startEndAngleDegree
+            CornerStyle.INNER_ROUNDED -> {
+                drawInnerRoundedRhombusShape(
+                    size = size,
+                    top = top.toPx(size, density),
+                    start = start.toPx(size, density),
+                    end = end.toPx(size, density),
+                    bottom = bottom.toPx(size, density)
+                )
+            }
 
-        val topCircleRadius = top.toPx(size, density)
-        val topCircleCenter = Point(
-            centerX, topCircleRadius / sin((topDownAngleDegree).toRadian()).toFloat()
-        )
-
-        val startCircleRadius = start.toPx(size, density)
-        val startCircleCenter = Point(
-            startCircleRadius / sin((startEndAngleDegree).toRadian()).toFloat(),
-            centerY
-        )
-
-        val endCircleRadius = end.toPx(size, density)
-        val endCircleCenter = Point(
-            size.width - endCircleRadius / sin((startEndAngleDegree).toRadian()).toFloat(),
-            centerY
-        )
-
-        val bottomCircleRadius = bottom.toPx(size, density)
-        val bottomCircleCenter = Point(
-            centerX,
-            size.height - bottomCircleRadius / sin((topDownAngleDegree).toRadian()).toFloat()
-        )
-
-        path.apply {
-            arcTo(
-                rect = Rect(
-                    offset = Offset(
-                        topCircleCenter.x - topCircleRadius,
-                        topCircleCenter.y - topCircleRadius
-                    ),
-                    size = Size(
-                        topCircleRadius * 2, topCircleRadius * 2,
-                    )
-                ),
-                startAngleDegrees = (topDownAngleDegree - 180f).toFloat(),
-                sweepAngleDegrees = 180f - 2 * topDownAngleDegree.toFloat(),
-                forceMoveTo = false
-
-            )
-
-            arcTo(
-                rect = Rect(
-                    offset = Offset(
-                        endCircleCenter.x - endCircleRadius,
-                        endCircleCenter.y - endCircleRadius
-                    ),
-                    size = Size(
-                        endCircleRadius * 2, endCircleRadius * 2,
-                    )
-                ),
-                startAngleDegrees = (startEndAngleDegree - 90f).toFloat(),
-                sweepAngleDegrees = 180f - 2 * startEndAngleDegree.toFloat(),
-                forceMoveTo = false
-            )
-
-            arcTo(
-                rect = Rect(
-                    offset = Offset(
-                        bottomCircleCenter.x - bottomCircleRadius,
-                        bottomCircleCenter.y - bottomCircleRadius
-                    ),
-                    size = Size(
-                        bottomCircleRadius * 2, bottomCircleRadius * 2,
-                    )
-                ),
-                startAngleDegrees = (topDownAngleDegree).toFloat(),
-                sweepAngleDegrees = 180f - 2 * topDownAngleDegree.toFloat(),
-                forceMoveTo = false
-
-            )
-
-            arcTo(
-                rect = Rect(
-                    offset = Offset(
-                        startCircleCenter.x - startCircleRadius,
-                        startCircleCenter.y - startCircleRadius
-                    ),
-                    size = Size(
-                        startCircleRadius * 2, startCircleRadius * 2,
-                    )
-                ),
-                startAngleDegrees = (90f + startEndAngleDegree).toFloat(),
-                sweepAngleDegrees = 180f - 2 * startEndAngleDegree.toFloat(),
-                forceMoveTo = false
-            )
-
-            close()
+            CornerStyle.CUT -> {
+                drawCutRhombusShape(
+                    size = size,
+                    top = top.toPx(size, density),
+                    start = start.toPx(size, density),
+                    end = end.toPx(size, density),
+                    bottom = bottom.toPx(size, density)
+                )
+            }
         }
 
         return Outline.Generic(path)
     }
 }
 
+private fun drawRoundedRhombusShape(
+    size: Size,
+    top: Float,
+    start: Float,
+    end: Float,
+    bottom: Float,
+): Path {
+    val path = Path()
+    val centerX = size.width / 2
+    val centerY = size.height / 2
 
-fun RhombusShape(cornerSize: CornerSize) =
-    RhombusShape(cornerSize, cornerSize, cornerSize, cornerSize)
+    val startEndHalfAngleDegree = atan(
+        centerY / centerX
+    ).toDouble().toDegree()
 
-fun RhombusShape(size: Dp) =
-    RhombusShape(CornerSize(size))
+    val topDownHalfAngleDegree = 90.0 - startEndHalfAngleDegree
+
+    val topCircleCenter = Point(
+        centerX, top / sin((topDownHalfAngleDegree).toRadian()).toFloat()
+    )
+
+    val startCircleCenter = Point(
+        start / sin((startEndHalfAngleDegree).toRadian()).toFloat(),
+        centerY
+    )
+
+    val endCircleCenter = Point(
+        size.width - end / sin((startEndHalfAngleDegree).toRadian()).toFloat(),
+        centerY
+    )
+
+    val bottomCircleCenter = Point(
+        centerX,
+        size.height - bottom / sin((topDownHalfAngleDegree).toRadian()).toFloat()
+    )
+
+    path.apply {
+        arcTo(
+            rect = Rect(
+                offset = Offset(
+                    topCircleCenter.x - top,
+                    topCircleCenter.y - top
+                ),
+                size = Size(
+                    top * 2, top * 2,
+                )
+            ),
+            startAngleDegrees = (topDownHalfAngleDegree - 180f).toFloat(),
+            sweepAngleDegrees = 180f - 2 * topDownHalfAngleDegree.toFloat(),
+            forceMoveTo = false
+
+        )
+
+        arcTo(
+            rect = Rect(
+                offset = Offset(
+                    endCircleCenter.x - end,
+                    endCircleCenter.y - end
+                ),
+                size = Size(
+                    end * 2, end * 2,
+                )
+            ),
+            startAngleDegrees = (startEndHalfAngleDegree - 90f).toFloat(),
+            sweepAngleDegrees = 180f - 2 * startEndHalfAngleDegree.toFloat(),
+            forceMoveTo = false
+        )
+
+        arcTo(
+            rect = Rect(
+                offset = Offset(
+                    bottomCircleCenter.x - bottom,
+                    bottomCircleCenter.y - bottom
+                ),
+                size = Size(
+                    bottom * 2, bottom * 2,
+                )
+            ),
+            startAngleDegrees = (topDownHalfAngleDegree).toFloat(),
+            sweepAngleDegrees = 180f - 2 * topDownHalfAngleDegree.toFloat(),
+            forceMoveTo = false
+
+        )
+
+        arcTo(
+            rect = Rect(
+                offset = Offset(
+                    startCircleCenter.x - start,
+                    startCircleCenter.y - start
+                ),
+                size = Size(
+                    start * 2, start * 2,
+                )
+            ),
+            startAngleDegrees = (90f + startEndHalfAngleDegree).toFloat(),
+            sweepAngleDegrees = 180f - 2 * startEndHalfAngleDegree.toFloat(),
+            forceMoveTo = false
+        )
+
+        close()
+    }
+
+    return path
+}
+
+private fun drawInnerRoundedRhombusShape(
+    size: Size,
+    top: Float,
+    start: Float,
+    end: Float,
+    bottom: Float,
+): Path {
+    val path = Path()
+    val width = size.width
+    val height = size.height
+    val centerX = width / 2
+    val centerY = height / 2
+
+    val startEndHalfAngleDegree = atan(
+        centerY / centerX
+    ).toDouble().toDegree()
+
+    val topDownHalfAngleDegree = 90.0 - startEndHalfAngleDegree
+
+    path.apply {
+        arcTo(
+            rect = Rect(
+                offset = Offset(
+                    centerX - top,
+                    0f - top
+                ),
+                size = Size(
+                    top * 2, top * 2,
+                )
+            ),
+            startAngleDegrees = (90f + topDownHalfAngleDegree).toFloat(),
+            sweepAngleDegrees = (-topDownHalfAngleDegree * 2).toFloat(),
+            forceMoveTo = false
+
+        )
+
+        arcTo(
+            rect = Rect(
+                offset = Offset(
+                    width - end,
+                    centerY - end
+                ),
+                size = Size(
+                    end * 2, end * 2,
+                )
+            ),
+            startAngleDegrees = (180f + startEndHalfAngleDegree).toFloat(),
+            sweepAngleDegrees = (-2 * startEndHalfAngleDegree).toFloat(),
+            forceMoveTo = false
+        )
+
+        arcTo(
+            rect = Rect(
+                offset = Offset(
+                    centerX - bottom,
+                    height - bottom
+                ),
+                size = Size(
+                    bottom * 2, bottom * 2,
+                )
+            ),
+            startAngleDegrees = (270f + topDownHalfAngleDegree).toFloat(),
+            sweepAngleDegrees = -2 * topDownHalfAngleDegree.toFloat(),
+            forceMoveTo = false
+        )
+
+        arcTo(
+            rect = Rect(
+                offset = Offset(
+                    -start,
+                    centerY - start
+                ),
+                size = Size(
+                    start * 2, start * 2,
+                )
+            ),
+            startAngleDegrees = (startEndHalfAngleDegree).toFloat(),
+            sweepAngleDegrees = -2 * startEndHalfAngleDegree.toFloat(),
+            forceMoveTo = false
+        )
+
+        close()
+    }
+
+    return path
+}
+
+private fun drawCutRhombusShape(
+    size: Size,
+    top: Float,
+    start: Float,
+    end: Float,
+    bottom: Float,
+): Path {
+    val path = Path()
+    val width = size.width
+    val height = size.height
+    val centerX = width / 2
+    val centerY = height / 2
+
+    val dist = sqrt(centerX * centerX + centerY * centerY)
+
+    path.apply {
+        moveTo(
+            centerX - top * centerX / dist,
+            0f + top * centerY / dist
+        )
+
+        lineTo(
+            centerX + top * centerX / dist,
+            0f + top * centerY / dist
+        )
+
+        lineTo(
+            width - end * centerX / dist,
+            centerY - top * centerY / dist
+        )
+
+        lineTo(
+            width - end * centerX / dist,
+            centerY + end * centerY / dist
+        )
+
+        lineTo(
+            centerX + bottom * centerX / dist,
+            height - bottom * centerY / dist
+        )
+
+        lineTo(
+            centerX - bottom * centerX / dist,
+            height - bottom * centerY / dist
+        )
+
+        lineTo(
+            start * centerX / dist,
+            centerY + start * centerY / dist
+        )
+
+        lineTo(
+            start * centerX / dist,
+            centerY - start * centerY / dist
+        )
+
+        close()
+    }
+
+    return path
+}
+
+fun RhombusShape(cornerStyle: CornerStyle, cornerSize: CornerSize) =
+    RhombusShape(cornerStyle, cornerSize, cornerSize, cornerSize, cornerSize)
+
+fun RhombusShape(cornerStyle: CornerStyle, size: Dp) =
+    RhombusShape(cornerStyle, CornerSize(size))
 
 fun RhombusShape(
+    cornerStyle: CornerStyle = CornerStyle.ROUNDED,
     top: Dp = 0.dp,
     start: Dp = 0.dp,
     end: Dp = 0.dp,
     bottom: Dp = 0.dp,
 ) = RhombusShape(
+    cornerStyle = cornerStyle,
     top = CornerSize(top),
     start = CornerSize(start),
     end = CornerSize(end),
