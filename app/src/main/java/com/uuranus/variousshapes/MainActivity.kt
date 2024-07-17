@@ -75,7 +75,8 @@ class MainActivity : ComponentActivity() {
                                 .weight(0.5f)
                                 .background(
                                     Color.Gray,
-                                    shape = RhombusShape(
+                                    shape = ParallelogramShape(
+                                        skewed = 0.2f,
                                         cornerStyle = CornerStyle.CUT,
                                         cornerSize = CornerSize(24.dp)
                                     )
