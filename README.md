@@ -146,7 +146,7 @@ Box(
         .background(
             color = Color.Gray,
             shape = PolygonShape(
-                numOfPoints = numOfPoints.toInt()
+                numOfPoints = 5
             )
         )
 ) {
