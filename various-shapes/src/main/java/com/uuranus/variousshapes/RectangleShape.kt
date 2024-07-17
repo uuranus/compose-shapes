@@ -74,6 +74,20 @@ private fun drawRoundedRectangleShape(
     val height = size.height
 
     path.apply {
+
+        arcTo(
+            rect = Rect(
+                offset = Offset(
+                    0f,
+                    0f
+                ),
+                size = Size(topStart * 2, topStart * 2)
+            ),
+            startAngleDegrees = 180f,
+            sweepAngleDegrees = 90f,
+            forceMoveTo = false
+        )
+
         arcTo(
             rect = Rect(
                 offset = Offset(
@@ -106,7 +120,7 @@ private fun drawRoundedRectangleShape(
         arcTo(
             rect = Rect(
                 offset = Offset(
-                    bottomStart * 2,
+                    0f,
                     height - bottomStart * 2
                 ),
                 size = Size(
@@ -119,18 +133,6 @@ private fun drawRoundedRectangleShape(
             forceMoveTo = false
         )
 
-        arcTo(
-            rect = Rect(
-                offset = Offset(
-                    topStart * 2,
-                    0f
-                ),
-                size = Size(topStart * 2, topStart * 2)
-            ),
-            startAngleDegrees = 180f,
-            sweepAngleDegrees = 90f,
-            forceMoveTo = false
-        )
         close()
     }
     return path
@@ -148,6 +150,20 @@ private fun drawInnerRoundedRectangleShape(
     val height = size.height
 
     path.apply {
+
+        arcTo(
+            rect = Rect(
+                offset = Offset(
+                    -topStart,
+                    -topStart
+                ),
+                size = Size(topStart * 2, topStart * 2)
+            ),
+            startAngleDegrees = 90f,
+            sweepAngleDegrees = -90f,
+            forceMoveTo = false
+        )
+
         arcTo(
             rect = Rect(
                 offset = Offset(
@@ -164,7 +180,7 @@ private fun drawInnerRoundedRectangleShape(
         arcTo(
             rect = Rect(
                 offset = Offset(
-                    width - bottomEnd ,
+                    width - bottomEnd,
                     height - bottomEnd
                 ),
                 size = Size(
@@ -180,7 +196,7 @@ private fun drawInnerRoundedRectangleShape(
         arcTo(
             rect = Rect(
                 offset = Offset(
-                    -bottomStart ,
+                    -bottomStart,
                     height - bottomStart
                 ),
                 size = Size(
@@ -193,18 +209,6 @@ private fun drawInnerRoundedRectangleShape(
             forceMoveTo = false
         )
 
-        arcTo(
-            rect = Rect(
-                offset = Offset(
-                    -topStart,
-                    -topStart
-                ),
-                size = Size(topStart * 2, topStart * 2)
-            ),
-            startAngleDegrees = 90f,
-            sweepAngleDegrees = -90f,
-            forceMoveTo = false
-        )
         close()
     }
     return path

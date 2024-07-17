@@ -75,139 +75,87 @@ class MainActivity : ComponentActivity() {
                                 .weight(0.3f)
                                 .background(
                                     Color.Gray,
-                                    shape = StarPolygonShape(
-                                        numOfPoints = 5,
-                                        innerRadiusRatio = 0.4f,
-                                        cornerStyle = CornerStyle.INNER_ROUNDED,
-                                        outerCornerSize = 24.dp,
-                                        innerCornerSize = 8.dp
+                                    shape = RectangleShape(
+                                        topStart = top.dp,
+                                        topEnd = end.dp,
+                                        bottomStart = start.dp,
+                                        bottomEnd = bottom.dp
                                     )
                                 )
                         ) {
                         }
 
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "numOfPoints"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = numOfPoints,
-//                                onValueChange = {
-//                                    numOfPoints = it
-//                                }, valueRange = 3f..20f
-//                            )
-//                        }
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "innerRadiusRatio"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = innerRadiusRatio,
-//                                onValueChange = {
-//                                    innerRadiusRatio = it
-//                                }, valueRange = 0f..1f
-//                            )
-//                        }
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "outerCornerRadius"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = outerCornerSize,
-//                                onValueChange = {
-//                                    outerCornerSize = it
-//                                }, valueRange = 0f..30f,
-//                                steps = 30
-//                            )
-//                        }
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "innerCornerRadius"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = innerCornerSize,
-//                                onValueChange = {
-//                                    innerCornerSize = it
-//                                }, valueRange = 0f..30f,
-//                                steps = 30
-//                            )
-//                        }
-
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "startCornerRadius"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = start,
-//                                onValueChange = {
-//                                    start = it
-//                                }, valueRange = 0f..100f
-//                            )
-//                        }
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "endCornerRadius"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = end,
-//                                onValueChange = {
-//                                    end = it
-//                                }, valueRange = 0f..100f
-//                            )
-//                        }
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "bottomCornerRadius"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = bottom,
-//                                onValueChange = {
-//                                    bottom = it
-//                                }, valueRange = 0f..100f
-//                            )
-//                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "topStartCornerRadius"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = top,
+                                onValueChange = {
+                                    top = it
+                                }, valueRange = 0f..30f,
+                                steps = 30
+                            )
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "topEndCornerRadius"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = end,
+                                onValueChange = {
+                                    end = it
+                                }, valueRange = 0f..30f, steps = 30
+                            )
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "bottomStartCornerRadius"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = start,
+                                onValueChange = {
+                                    start = it
+                                }, valueRange = 0f..30f,
+                                steps = 30
+                            )
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "bottomEndCornerRadius"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = bottom,
+                                onValueChange = {
+                                    bottom = it
+                                }, valueRange = 0f..30f,
+                                steps = 30
+                            )
+                        }
 
                         Box(
                             modifier = Modifier.weight(0.4f)
