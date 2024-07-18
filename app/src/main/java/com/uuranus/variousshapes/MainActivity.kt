@@ -76,7 +76,9 @@ class MainActivity : ComponentActivity() {
                                 .weight(0.5f)
                                 .background(
                                     Color.Gray,
-                                    shape = CloudShape()
+                                    shape = RingShape(
+                                        ringWidth =12.dp
+                                    )
                                 )
                         ) {
                         }
@@ -172,11 +174,13 @@ fun GreetingPreview() {
 
         Box(
             modifier = Modifier
-                .width(800.dp)
+                .width(400.dp)
                 .height(400.dp)
                 .background(
                     Color.Gray,
-                    shape = CloudShape()
+                    shape = RingShape(
+                        ringWidth = 3.dp
+                    )
                 )
         )
     }
