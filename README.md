@@ -203,6 +203,18 @@ You can customize corners using the CornerStyle enum class.
 
 </table>
 
+# Others
+
+<table>
+  <th>Cloud</th>
+
+  <tr>
+    <td><img src = "https://github.com/user-attachments/assets/10875742-2277-45e5-b2a8-2dc3787a10c2" width = "250"></td>
+
+
+</tr>
+
+</table>
 
 # Get Started
 Step 1. Add it in your root build.gradle at the end of repositories
