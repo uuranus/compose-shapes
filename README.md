@@ -207,10 +207,11 @@ You can customize corners using the CornerStyle enum class.
 
 <table>
   <th>Cloud</th>
+  <th>Ring</th>
 
   <tr>
     <td><img src = "https://github.com/user-attachments/assets/10875742-2277-45e5-b2a8-2dc3787a10c2" width = "250"></td>
-
+    <td><img src = "https://github.com/user-attachments/assets/dc5aea6f-69e2-4de8-8f73-16d0a6ebf227" width = "250"></td>
 
 </tr>
 
