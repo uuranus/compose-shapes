@@ -1,6 +1,5 @@
 package com.uuranus.variousshapes
 
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Outline
@@ -32,7 +31,6 @@ class RingShape(
         val innerRadius = radius - ringWidthPx
 
         path.apply {
-            // 안쪽 원 경로 추가
 
             addOval(
                 Rect(
@@ -57,9 +55,6 @@ class RingShape(
                 },
                 operation = PathOperation.Difference
             )
-
-            // 바깥쪽 원 경로 추가
-
 
         }
 
