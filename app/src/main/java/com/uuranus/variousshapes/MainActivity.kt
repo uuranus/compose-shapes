@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
                                 .weight(0.5f)
                                 .background(
                                     Color.Gray,
-                                    shape = CloudShape(8)
+                                    shape = CloudShape()
                                 )
                         ) {
                         }
@@ -176,7 +176,7 @@ fun GreetingPreview() {
                 .height(400.dp)
                 .background(
                     Color.Gray,
-                    shape = CloudShape(8)
+                    shape = CloudShape()
                 )
         )
     }
