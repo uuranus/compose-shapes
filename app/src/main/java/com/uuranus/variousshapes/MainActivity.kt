@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CornerSize
@@ -72,90 +73,85 @@ class MainActivity : ComponentActivity() {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .weight(0.3f)
+                                .weight(0.5f)
                                 .background(
                                     Color.Gray,
-                                    shape = RectangleShape(
-                                        topStart = top.dp,
-                                        topEnd = end.dp,
-                                        bottomStart = start.dp,
-                                        bottomEnd = bottom.dp
-                                    )
+                                    shape = CloudShape(8)
                                 )
                         ) {
                         }
 
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                "topStartCornerRadius"
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Slider(
-                                value = top,
-                                onValueChange = {
-                                    top = it
-                                }, valueRange = 0f..30f,
-                                steps = 30
-                            )
-                        }
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                "topEndCornerRadius"
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Slider(
-                                value = end,
-                                onValueChange = {
-                                    end = it
-                                }, valueRange = 0f..30f, steps = 30
-                            )
-                        }
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                "bottomStartCornerRadius"
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Slider(
-                                value = start,
-                                onValueChange = {
-                                    start = it
-                                }, valueRange = 0f..30f,
-                                steps = 30
-                            )
-                        }
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                "bottomEndCornerRadius"
-                            )
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Slider(
-                                value = bottom,
-                                onValueChange = {
-                                    bottom = it
-                                }, valueRange = 0f..30f,
-                                steps = 30
-                            )
-                        }
+//                        Row(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .padding(vertical = 12.dp),
+//                            verticalAlignment = Alignment.CenterVertically
+//                        ) {
+//                            Text(
+//                                "topStartCornerRadius"
+//                            )
+//                            Spacer(modifier = Modifier.width(4.dp))
+//                            Slider(
+//                                value = top,
+//                                onValueChange = {
+//                                    top = it
+//                                }, valueRange = 0f..30f,
+//                                steps = 30
+//                            )
+//                        }
+//                        Row(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .padding(vertical = 12.dp),
+//                            verticalAlignment = Alignment.CenterVertically
+//                        ) {
+//                            Text(
+//                                "topEndCornerRadius"
+//                            )
+//                            Spacer(modifier = Modifier.width(4.dp))
+//                            Slider(
+//                                value = end,
+//                                onValueChange = {
+//                                    end = it
+//                                }, valueRange = 0f..30f, steps = 30
+//                            )
+//                        }
+//                        Row(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .padding(vertical = 12.dp),
+//                            verticalAlignment = Alignment.CenterVertically
+//                        ) {
+//                            Text(
+//                                "bottomStartCornerRadius"
+//                            )
+//                            Spacer(modifier = Modifier.width(4.dp))
+//                            Slider(
+//                                value = start,
+//                                onValueChange = {
+//                                    start = it
+//                                }, valueRange = 0f..30f,
+//                                steps = 30
+//                            )
+//                        }
+//                        Row(
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .padding(vertical = 12.dp),
+//                            verticalAlignment = Alignment.CenterVertically
+//                        ) {
+//                            Text(
+//                                "bottomEndCornerRadius"
+//                            )
+//                            Spacer(modifier = Modifier.width(4.dp))
+//                            Slider(
+//                                value = bottom,
+//                                onValueChange = {
+//                                    bottom = it
+//                                }, valueRange = 0f..30f,
+//                                steps = 30
+//                            )
+//                        }
 
                         Box(
                             modifier = Modifier.weight(0.4f)
@@ -173,12 +169,16 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     VariousShapesTheme {
-        var innerRadiusRatio by remember { mutableFloatStateOf(2.5f) }
 
-        Column {
-
-
-        }
+        Box(
+            modifier = Modifier
+                .width(800.dp)
+                .height(400.dp)
+                .background(
+                    Color.Gray,
+                    shape = CloudShape(8)
+                )
+        )
     }
 }
 
