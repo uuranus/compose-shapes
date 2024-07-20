@@ -16,17 +16,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material3.Slider
-import androidx.compose.material3.Text
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,23 +37,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             VariousShapesTheme {
-                // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier
                         .fillMaxSize(),
                 ) {
-                    var innerRadiusRatio by remember { mutableFloatStateOf(0.4f) }
-                    var numOfPoints by remember { mutableFloatStateOf(5f) }
-                    var smoothing by remember { mutableFloatStateOf(0.0f) }
-                    var outerCornerSize by remember { mutableFloatStateOf(0.0f) }
-                    var innerCornerSize by remember { mutableFloatStateOf(0.0f) }
-                    var startSkewed by remember { mutableFloatStateOf(0.2f) }
-                    var endSkewed by remember { mutableFloatStateOf(0.2f) }
-
-                    var top by remember { mutableStateOf(0f) }
-                    var start by remember { mutableStateOf(0f) }
-                    var end by remember { mutableStateOf(0f) }
-                    var bottom by remember { mutableStateOf(0f) }
+                    var corner by remember { mutableStateOf(0f) }
 
                     Column(
                         modifier = Modifier
@@ -85,77 +72,24 @@ class MainActivity : ComponentActivity() {
                         ) {
                         }
 
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "topStartCornerRadius"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = top,
-//                                onValueChange = {
-//                                    top = it
-//                                }, valueRange = 0f..30f,
-//                                steps = 30
-//                            )
-//                        }
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "topEndCornerRadius"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = end,
-//                                onValueChange = {
-//                                    end = it
-//                                }, valueRange = 0f..30f, steps = 30
-//                            )
-//                        }
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "bottomStartCornerRadius"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = start,
-//                                onValueChange = {
-//                                    start = it
-//                                }, valueRange = 0f..30f,
-//                                steps = 30
-//                            )
-//                        }
-//                        Row(
-//                            modifier = Modifier
-//                                .fillMaxWidth()
-//                                .padding(vertical = 12.dp),
-//                            verticalAlignment = Alignment.CenterVertically
-//                        ) {
-//                            Text(
-//                                "bottomEndCornerRadius"
-//                            )
-//                            Spacer(modifier = Modifier.width(4.dp))
-//                            Slider(
-//                                value = bottom,
-//                                onValueChange = {
-//                                    bottom = it
-//                                }, valueRange = 0f..30f,
-//                                steps = 30
-//                            )
-//                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "cornerRadius"
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Slider(
+                                value = corner,
+                                onValueChange = {
+                                    corner = it
+                                }, valueRange = 0f..30f,
+                                steps = 30
+                            )
+                        }
 
                         Box(
                             modifier = Modifier.weight(0.4f)

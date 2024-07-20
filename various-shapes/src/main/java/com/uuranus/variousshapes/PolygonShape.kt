@@ -1,15 +1,15 @@
 package com.uuranus.variousshapes
 
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Outline
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.LayoutDirection
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.unit.LayoutDirection
 
 class PolygonShape(
     private val numOfPoints: Int,
