@@ -172,7 +172,7 @@ Box(
             Color.Gray,
             shape = StarPolygonShape(
                 numOfPoints = 5,
-                innerRadiusRatio = 0.5f,
+                innerRadiusRatio = 0.5f, //0f .. 1f
                 outerCornerSize = 24.dp,
                 innerCornerSize = 12.dp
             )
