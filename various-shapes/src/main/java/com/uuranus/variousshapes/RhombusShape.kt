@@ -318,10 +318,13 @@ private fun drawCutRhombusShape(
     return path
 }
 
-fun RhombusShape(cornerStyle: CornerStyle, cornerSize: CornerSize) =
+fun RhombusShape(
+    cornerStyle: CornerStyle = CornerStyle.ROUNDED,
+    cornerSize: CornerSize = CornerSize(0.dp),
+) =
     RhombusShape(cornerStyle, cornerSize, cornerSize, cornerSize, cornerSize)
 
-fun RhombusShape(cornerStyle: CornerStyle, size: Dp) =
+fun RhombusShape(cornerStyle: CornerStyle = CornerStyle.ROUNDED, size: Dp = 0.dp) =
     RhombusShape(cornerStyle, CornerSize(size))
 
 fun RhombusShape(

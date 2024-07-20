@@ -410,20 +410,25 @@ private fun drawCutStarPolygonShape(
     return path
 }
 
-
 fun StarPolygonShape(
-    numOfPoints: Int, innerRadiusRatio: Float, cornerStyle: CornerStyle, cornerSize: CornerSize,
+    numOfPoints: Int,
+    innerRadiusRatio: Float = 0.5f,
+    cornerStyle: CornerStyle = CornerStyle.ROUNDED,
+    cornerSize: CornerSize = CornerSize(0.dp),
 ) =
     StarPolygonShape(numOfPoints, innerRadiusRatio, cornerStyle, cornerSize, cornerSize)
 
 fun StarPolygonShape(
-    numOfPoints: Int, innerRadiusRatio: Float, cornerStyle: CornerStyle, size: Dp,
+    numOfPoints: Int,
+    innerRadiusRatio: Float = 0.5f,
+    cornerStyle: CornerStyle = CornerStyle.ROUNDED,
+    size: Dp = 0.dp,
 ) =
     StarPolygonShape(numOfPoints, innerRadiusRatio, cornerStyle, CornerSize(size))
 
 fun StarPolygonShape(
     numOfPoints: Int,
-    innerRadiusRatio: Float,
+    innerRadiusRatio: Float = 0.5f,
     cornerStyle: CornerStyle = CornerStyle.ROUNDED,
     outerCornerSize: Dp = 0.dp,
     innerCornerSize: Dp = 0.dp,

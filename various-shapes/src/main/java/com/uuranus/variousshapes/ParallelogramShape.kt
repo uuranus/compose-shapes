@@ -280,10 +280,18 @@ private fun drawCutParallelogramShape(
 }
 
 
-fun ParallelogramShape(skewed: Float, cornerStyle: CornerStyle, cornerSize: CornerSize) =
+fun ParallelogramShape(
+    skewed: Float,
+    cornerStyle: CornerStyle = CornerStyle.ROUNDED,
+    cornerSize: CornerSize = CornerSize(0.dp),
+) =
     ParallelogramShape(skewed, cornerStyle, cornerSize, cornerSize, cornerSize, cornerSize)
 
-fun ParallelogramShape(skewed: Float, cornerStyle: CornerStyle, size: Dp) =
+fun ParallelogramShape(
+    skewed: Float,
+    cornerStyle: CornerStyle = CornerStyle.ROUNDED,
+    size: Dp = 0.dp,
+) =
     ParallelogramShape(skewed, cornerStyle, CornerSize(size))
 
 fun ParallelogramShape(

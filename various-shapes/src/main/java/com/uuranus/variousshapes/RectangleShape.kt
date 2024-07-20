@@ -249,17 +249,10 @@ private fun drawCutRectangleShape(
     return path
 }
 
-
-fun RectangleShape(cornerSize: CornerSize) =
-    RectangleShape(
-        cornerStyle = CornerStyle.ROUNDED,
-        cornerSize,
-        cornerSize,
-        cornerSize,
-        cornerSize
-    )
-
-fun RectangleShape(cornerStyle: CornerStyle, cornerSize: CornerSize) =
+fun RectangleShape(
+    cornerStyle: CornerStyle = CornerStyle.ROUNDED,
+    cornerSize: CornerSize = CornerSize(0.dp),
+) =
     RectangleShape(
         cornerStyle = cornerStyle,
         cornerSize,
@@ -268,7 +261,7 @@ fun RectangleShape(cornerStyle: CornerStyle, cornerSize: CornerSize) =
         cornerSize
     )
 
-fun RectangleShape(cornerStyle: CornerStyle, size: Dp) =
+fun RectangleShape(cornerStyle: CornerStyle = CornerStyle.ROUNDED, size: Dp = 0.dp) =
     RectangleShape(cornerStyle, CornerSize(size))
 
 fun RectangleShape(

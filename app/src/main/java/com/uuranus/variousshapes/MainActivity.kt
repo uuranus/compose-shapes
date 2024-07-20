@@ -73,11 +73,13 @@ class MainActivity : ComponentActivity() {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .weight(0.5f)
+                                .weight(0.3f)
                                 .background(
                                     Color.Gray,
-                                    shape = RingShape(
-                                        ringWidth =12.dp
+                                    shape = TrapezoidShape(
+                                        skewed = 0.3f,
+                                        cornerStyle = CornerStyle.ROUNDED,
+                                        cornerSize = CornerSize(0.dp),
                                     )
                                 )
                         ) {

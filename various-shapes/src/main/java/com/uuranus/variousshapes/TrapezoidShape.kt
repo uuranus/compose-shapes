@@ -296,10 +296,27 @@ private fun drawCutTrapezoidShape(
     return path
 }
 
-fun TrapezoidShape(skewed: Float, cornerStyle: CornerStyle, cornerSize: CornerSize) =
+fun TrapezoidShape(
+    skewed: Float,
+    cornerStyle: CornerStyle = CornerStyle.ROUNDED,
+    cornerSize: CornerSize = CornerSize(0.dp),
+) =
     TrapezoidShape(skewed, skewed, cornerStyle, cornerSize, cornerSize, cornerSize, cornerSize)
 
-fun TrapezoidShape(startSkewed: Float, cornerStyle: CornerStyle, endSkewed: Float, size: Dp) =
+fun TrapezoidShape(
+    startSkewed: Float,
+    endSkewed: Float,
+    cornerStyle: CornerStyle = CornerStyle.ROUNDED,
+    cornerSize: CornerSize = CornerSize(0.dp),
+) =
+    TrapezoidShape(startSkewed, endSkewed, cornerStyle, cornerSize, cornerSize, cornerSize, cornerSize)
+
+fun TrapezoidShape(
+    startSkewed: Float,
+    endSkewed: Float,
+    cornerStyle: CornerStyle = CornerStyle.ROUNDED,
+    size: Dp = 0.dp,
+) =
     TrapezoidShape(
         startSkewed,
         endSkewed,
