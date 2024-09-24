@@ -90,7 +90,16 @@ class CloudShape : Shape {
             )
 
         for (ellipse in ellipses) {
-            path.addOval(ellipse)
+
+            path.addOval(
+                Rect(
+                    centerX - middleCircleRadius * 2,
+                    centerY + middleCircleY - middleCircleRadius,
+                    centerX,
+                    centerY + middleCircleY + middleCircleRadius,
+                )
+            )
+
         }
 
         return Outline.Generic(path)
