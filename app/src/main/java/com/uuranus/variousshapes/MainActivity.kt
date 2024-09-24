@@ -103,7 +103,7 @@ class MainActivity : ComponentActivity() {
                                 .padding(36.dp)
                                 .background(
                                     Color.Gray,
-                                    CommentShape(
+                                    SpeechBubbleShape(
                                         percent = 10,
                                         pointerWidthRatio = 0.2f,
                                         pointerHeightRatio = 0.2f,
